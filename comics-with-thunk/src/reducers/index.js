@@ -6,12 +6,26 @@ const initialState = {
   err: "",
 };
 
-export const comicReducer = function (state = initialState, action) {
+export const comicReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case FETCH_SUCCESS:
-      return state + 1;
+      return {
+        ...state,
+        comics: [...action.payload, ...state.comics],
+        isLoading: false,
+        error: "",
+      };
     case FETCH_FAIL:
-      return state - 1;
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
