@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { addComment } from "../actions";
+import "bulma/css/bulma.css";
 
 const FullComic = () => {
   let { num } = useParams();
@@ -24,8 +25,10 @@ const FullComic = () => {
   };
 
   const handleSubmit = (comment, num) => {
-    dispatch(addComment(comment, num));
-    setComment("");
+    if (comment) {
+      dispatch(addComment(comment, num));
+      setComment("");
+    }
   };
 
   return (
@@ -46,6 +49,7 @@ const FullComic = () => {
         }}
       >
         <textarea
+          class="textarea"
           name="comment"
           placeholder="add your comments"
           type="text"
@@ -53,11 +57,17 @@ const FullComic = () => {
           value={comment}
         ></textarea>
 
-        <button type="submit" onClick={() => handleSubmit(comment, num)}>
+        <button
+          class="button is-small is-info"
+          type="submit"
+          onClick={() => handleSubmit(comment, num)}
+        >
           submit
         </button>
         {selectComic.comments &&
-          selectComic.comments.map((comment) => <div> {comment} </div>)}
+          selectComic.comments.map((comment) => (
+            <div class="media"> {comment} </div>
+          ))}
       </div>
     </div>
   );

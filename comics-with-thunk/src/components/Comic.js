@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "bulma/css/bulma.css";
 
 const Comic = (props) => {
   const { comic } = props;
 
   return (
     <div>
-      <h1>{comic.title}</h1>
+      <p class="title comic">{comic.title}</p>
       <Link to={`/${comic.num}`}>
-        <img style={{ maxHeight: "250px" }} src={comic.img} alt={comic.alt} />
+        <img
+          class="image has-image-centered "
+          src={comic.img}
+          alt={comic.alt}
+        />
       </Link>
       <p>{comic.alt}</p>
     </div>

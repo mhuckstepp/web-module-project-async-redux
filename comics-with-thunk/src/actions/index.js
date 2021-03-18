@@ -12,6 +12,7 @@ export const fetchComics = () => {
       .all([
         axios.get(`http://xkcd.com/${num}/info.0.json`),
         axios.get(`http://xkcd.com/${num + 1}/info.0.json`),
+        axios.get(`http://xkcd.com/${num + 2}/info.0.json`),
       ])
       .then((res) => {
         dispatch({
