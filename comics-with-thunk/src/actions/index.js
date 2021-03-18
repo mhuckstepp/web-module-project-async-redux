@@ -14,7 +14,18 @@ export const fetchComics = () => {
         axios.get(`http://xkcd.com/${num + 1}/info.0.json`),
       ])
       .then((res) => {
-        dispatch({ type: FETCH_SUCCESS, payload: res.map((obj) => obj.data) });
+        dispatch({
+          type: FETCH_SUCCESS,
+          payload: res.map((obj) => {
+            return {
+              alt: obj.data.alt,
+              img: obj.data.img,
+              num: obj.data.num,
+              title: obj.data.title,
+              comments: [],
+            };
+          }),
+        });
       })
       .catch((err) => {
         dispatch({ type: FETCH_FAIL, payload: err });

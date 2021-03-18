@@ -38,7 +38,7 @@ export const comicReducer = (state = initialState, action) => {
           if (comic.num == action.payload.num) {
             return {
               ...comic,
-              comment: [action.payload.comment],
+              comments: [...comic.comments, action.payload.comment],
             };
           } else {
             return comic;

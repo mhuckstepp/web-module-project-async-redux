@@ -25,6 +25,7 @@ const FullComic = () => {
 
   const handleSubmit = (comment, num) => {
     dispatch(addComment(comment, num));
+    setComment("");
   };
 
   return (
@@ -36,15 +37,28 @@ const FullComic = () => {
         alt={selectComic.alt}
       />
       <p>{selectComic.alt}</p>
-      <label>
-        {" "}
-        comments
-        <textarea name="comment" type="text" onChange={handleChange}></textarea>
-      </label>
-      <button type="submit" onClick={() => handleSubmit(comment, num)}>
-        submit
-      </button>
-      {selectComic.comment && <div>{selectComic.comment}</div>}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "30%",
+          margin: "0 auto",
+        }}
+      >
+        <textarea
+          name="comment"
+          placeholder="add your comments"
+          type="text"
+          onChange={handleChange}
+          value={comment}
+        ></textarea>
+
+        <button type="submit" onClick={() => handleSubmit(comment, num)}>
+          submit
+        </button>
+        {selectComic.comments &&
+          selectComic.comments.map((comment) => <div> {comment} </div>)}
+      </div>
     </div>
   );
 };
