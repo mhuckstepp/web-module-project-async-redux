@@ -5,7 +5,7 @@ export const FETCH_START = "FETCH_START";
 export const ADD_COMMENT = "ADD_COMMENT";
 
 export const fetchComics = () => {
-  let num = Math.ceil(Math.random() * 700);
+  let num = Math.ceil(Math.random() * 2439);
   return (dispatch) => {
     dispatch({ type: FETCH_START });
     axios
