@@ -1,4 +1,9 @@
-import { FETCH_SUCCESS, FETCH_FAIL, FETCH_START } from "../actions";
+import {
+  FETCH_SUCCESS,
+  FETCH_FAIL,
+  FETCH_START,
+  ADD_COMMENT,
+} from "../actions";
 
 const initialState = {
   comics: [],
@@ -16,7 +21,7 @@ export const comicReducer = (state = initialState, action) => {
     case FETCH_SUCCESS:
       return {
         ...state,
-        comics: [...action.payload, ...state.comics],
+        comics: [...state.comics, ...action.payload],
         isLoading: false,
         error: "",
       };
@@ -25,6 +30,20 @@ export const comicReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        comics: state.comics.map((comic) => {
+          if (comic.num == action.payload.num) {
+            return {
+              ...comic,
+              comment: [action.payload.comment],
+            };
+          } else {
+            return comic;
+          }
+        }),
       };
     default:
       return state;

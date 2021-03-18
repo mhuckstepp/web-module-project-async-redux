@@ -6,7 +6,6 @@ import { comicReducer } from "./reducers";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 let store = createStore(comicReducer, applyMiddleware(thunk, logger));
 

@@ -1,29 +1,36 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { fetchComics } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import Comic from "./Comic";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Comics = () => {
-  const [comicNum, setComicNum] = useState(Math.floor(Math.random() * 500));
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const clickHandler = () => {
-    setComicNum(comicNum + 3);
-  };
-
   useEffect(() => {
-    dispatch(fetchComics(comicNum));
-  }, [comicNum]);
+    dispatch(fetchComics());
+  }, []);
+
+  function fetchMore() {
+    dispatch(fetchComics());
+  }
 
   return (
     <div>
-      <button onClick={() => clickHandler()}> Load more comics</button>
-      {state.isLoading
-        ? "LOADING...."
-        : state.comics.map((comic) => {
-            return <Comic comic={comic} key={comic.title} />;
-          })}
+      {state.isLoading && <div>"LOADING...."</div>}
+      {state.error && <div>"ERROR WHILE LOADING"</div>}
+      <InfiniteScroll
+        dataLength={state.comics.length}
+        next={() => fetchMore()}
+        hasMore={true}
+        loader={<h4>Loading...</h4>}
+      >
+        {state.comics.map((comic) => {
+          return <Comic comic={comic} key={comic.title} />;
+        })}
+      </InfiniteScroll>
+      {/* <button onClick={() => clickHandler()}> Load more comics</button> */}
     </div>
   );
 };
