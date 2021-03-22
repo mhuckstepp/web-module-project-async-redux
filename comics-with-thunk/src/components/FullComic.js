@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { addComment } from "../actions";
-import "bulma/css/bulma.css";
 import axios from "axios";
 
 const FullComic = () => {
@@ -55,7 +54,7 @@ const FullComic = () => {
       <div className="container">
         <h1>{selectComic.title}</h1>
         <img
-          style={{ maxHeight: "550px" }}
+          className="fullComic"
           src={selectComic.img}
           alt={selectComic.alt}
         />

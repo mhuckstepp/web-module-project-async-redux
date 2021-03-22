@@ -10,7 +10,7 @@ function App() {
       <Switch>
         <div className="App">
           <Link to="/">Home</Link>
-          <h1 class="title">xkcd comics</h1>
+
           <Route path="/:num" component={FullComic} />
           <Route exact path="/" component={Comics} />
         </div>

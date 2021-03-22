@@ -3,7 +3,6 @@ import { fetchComics } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import Comic from "./Comic";
 import InfiniteScroll from "react-infinite-scroll-component";
-import "bulma/css/bulma.css";
 
 const Comics = () => {
   const state = useSelector((state) => state);
@@ -18,9 +17,12 @@ const Comics = () => {
   }
 
   return (
-    <div class="columns is-centered">
+    <div>
       {state.isLoading && <div>"LOADING...."</div>}
       {state.error && <div>"ERROR WHILE LOADING"</div>}
+      <div className="headTitle">
+        <h1> xkcd comics</h1>
+      </div>
       <InfiniteScroll
         dataLength={state.comics.length}
         next={() => fetchMore()}
