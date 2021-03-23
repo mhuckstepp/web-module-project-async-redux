@@ -28,8 +28,8 @@ const GetComicForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mb-6">
-      <p className="mt-8">Jump to comic by #</p>
+    <div className=" flex flex-col items-center mb-6">
+      <p>Jump to comic by #</p>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           class="focus:ring-indigo-500 focus:border-indigo-500 block text-xl border-gray-300 rounded-md"

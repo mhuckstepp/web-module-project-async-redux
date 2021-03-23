@@ -21,7 +21,7 @@ const Comics = () => {
       <div className="flex flex-col items-center ">
         {state.isLoading && <div>"LOADING...."</div>}
         {state.error && <div>"ERROR WHILE LOADING"</div>}
-        <h1 className="text-8xl self-center"> xkcd comics</h1>
+
         <InfiniteScroll
           dataLength={state.comics.length}
           next={() => fetchMore()}

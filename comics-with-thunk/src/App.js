@@ -9,11 +9,17 @@ function App() {
   return (
     <Router>
       <Switch>
-        <div className=" bg-gray-100 p-8 flex flex-col items-center">
-          <Link to="/">
-            <p className="underline font-black text-lg">Home</p>
-          </Link>
-          <GetComicForm />
+        <div className="flex flex-col justify-start items-center  ">
+          <div className=" flex justify-between w-full bg-gradient-to-r from-yellow-200 via-red-200 to-pink-200  rounded shadow-2xl ">
+            <Link to="/">
+              <p className="underline inline font-black text-lg">Go Home</p>
+            </Link>
+            <h1 className="text-8xl justify-self-center ml-16 ">
+              {" "}
+              xkcd comics
+            </h1>
+            <GetComicForm />
+          </div>
           <Route path="/:num" component={FullComic} />
           <Route exact path="/" component={Comics} />
         </div>
