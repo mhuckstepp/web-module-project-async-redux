@@ -12,4 +12,10 @@
   .btn-blue:hover {
     @apply bg-blue-700;
   }
+  .btn-gray {
+    @apply bg-blue-500 text-white;
+  }
+  .btn-blue {
+    @apply bg-blue-500 text-white;
+  }
 }
