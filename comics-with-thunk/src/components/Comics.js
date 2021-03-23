@@ -18,22 +18,21 @@ const Comics = () => {
 
   return (
     <div>
-      {state.isLoading && <div>"LOADING...."</div>}
-      {state.error && <div>"ERROR WHILE LOADING"</div>}
-      <div className="headTitle">
-        <h1> xkcd comics</h1>
+      <div className="flex flex-col items-center ">
+        {state.isLoading && <div>"LOADING...."</div>}
+        {state.error && <div>"ERROR WHILE LOADING"</div>}
+        <h1 className="text-8xl self-center"> xkcd comics</h1>
+        <InfiniteScroll
+          dataLength={state.comics.length}
+          next={() => fetchMore()}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+        >
+          {state.comics.map((comic) => {
+            return <Comic comic={comic} key={comic.title} />;
+          })}
+        </InfiniteScroll>
       </div>
-      <InfiniteScroll
-        dataLength={state.comics.length}
-        next={() => fetchMore()}
-        hasMore={true}
-        loader={<h4>Loading...</h4>}
-      >
-        {state.comics.map((comic) => {
-          return <Comic comic={comic} key={comic.title} />;
-        })}
-      </InfiniteScroll>
-      {/* <button onClick={() => clickHandler()}> Load more comics</button> */}
     </div>
   );
 };

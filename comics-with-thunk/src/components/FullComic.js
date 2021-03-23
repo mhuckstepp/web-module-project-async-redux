@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { addComment } from "../actions";
@@ -11,6 +11,9 @@ const FullComic = () => {
   const [selectComic, setSelectComic] = useState([{}]);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
+  let history = useHistory();
+
+  console.log(history.location);
 
   useEffect(() => {
     if (comics.length > 0) {
@@ -36,30 +39,27 @@ const FullComic = () => {
           console.log(err);
         });
     }
-  }, [num, comics]);
+  }, [num, comics, history.location.pathname]);
 
-  const handleChange = (e) => {
-    setComment(e.target.value);
-  };
+  // const handleChange = (e) => {
+  //   setComment(e.target.value);
+  // };
 
-  const handleSubmit = (comment, num) => {
-    if (comment) {
-      dispatch(addComment(comment, num));
-      setComment("");
-    }
-  };
+  // const handleSubmit = (comment, num) => {
+  //   if (comment) {
+  //     dispatch(addComment(comment, num));
+  //     setComment("");
+  //   }
+  // };
 
   return (
     <div>
-      <div className="container">
-        <h1>{selectComic.title}</h1>
-        <img
-          className="fullComic"
-          src={selectComic.img}
-          alt={selectComic.alt}
-        />
-        <p>{selectComic.alt}</p>
-        {selectComic.comments &&
+      <div className="flex flex-col items-center w-full ">
+        <h1 className="text-7xl mb-8">{selectComic.title}</h1>
+        <img className="w-10/12" src={selectComic.img} alt={selectComic.alt} />
+        <p className="text-4xl my-16 w-9/12">{selectComic.alt}</p>
+        <p className="text-l mb-4"># {selectComic.num}</p>
+        {/* {selectComic.comments &&
           selectComic.comments.map((comment) => (
             <div class="media"> {comment} </div>
           ))}
@@ -98,7 +98,7 @@ const FullComic = () => {
           >
             Add your own caption!
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

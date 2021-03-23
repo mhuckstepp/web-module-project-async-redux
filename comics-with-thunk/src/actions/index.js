@@ -5,7 +5,9 @@ export const FETCH_START = "FETCH_START";
 export const ADD_COMMENT = "ADD_COMMENT";
 
 export const fetchComics = () => {
-  let num = Math.ceil(Math.random() * 2439);
+  // assumes a new comic every 3 days and adds the number to potential list
+  let daysElapsed = Math.floor((Date.now() / 86400000 - 18708) / 3);
+  let num = Math.ceil(Math.random() * (2440 + daysElapsed));
   return (dispatch) => {
     dispatch({ type: FETCH_START });
     axios
@@ -36,6 +38,5 @@ export const fetchComics = () => {
 };
 
 export const addComment = (comment, num) => {
-  console.log({ type: ADD_COMMENT, payload: { comment: comment, num: num } });
   return { type: ADD_COMMENT, payload: { comment: comment, num: num } };
 };
