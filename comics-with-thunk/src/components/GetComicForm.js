@@ -38,15 +38,15 @@ const GetComicForm = () => {
           value={number}
           onChange={changeHandler}
         ></input>
+        {error && (
+          <p className="text-red-700 text-md">
+            {" "}
+            # Must be 1 - {Math.ceil(2440 + comicNumEstimate)}
+          </p>
+        )}
         <button className="btn btn-blue self-center my-4 ml-20 " type="submit">
           Jump
         </button>
-        {error && (
-          <p className="text-red-700 text-xl">
-            {" "}
-            must be between 1 and {Math.ceil(2440 + comicNumEstimate)}
-          </p>
-        )}
       </form>
     </div>
   );

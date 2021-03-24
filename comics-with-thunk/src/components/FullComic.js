@@ -66,21 +66,21 @@ const FullComic = () => {
   return (
     <div>
       <div className="flex flex-col items-center w-full ">
-        <div className="flex">
+        <div className="flex mt-8 mb-5">
           <button
-            className="bg-gradient-to-r mr-12 p-4 from-blue-500 rounded font-bold"
+            className="bg-gradient-to-r mr-12 p-4 from-gray-500 rounded font-bold"
             onClick={() => handleLast()}
           >
             Previous
           </button>
           <button
-            className="bg-gradient-to-l ml-6 p-4 from-blue-500 rounded font-bold"
+            className="bg-gradient-to-l ml-10 p-4 pl-10 from-gray-500 rounded font-bold"
             onClick={() => handleNext()}
           >
             Next
           </button>
         </div>
-        <h1 className="text-7xl mb-8">{selectComic.title}</h1>
+        <h1 className="text-5xl mb-8">{selectComic.title}</h1>
         <img
           className="max-w-screen-xl max-h-screen"
           src={selectComic.img}
